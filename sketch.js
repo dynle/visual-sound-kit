@@ -2,7 +2,15 @@ let sample = [];
 let animation = [];
 let num;
 const maxAnim = 6;
-let input, button_play, button_stop, music_name, source, music, vol, vol_slider, img;
+let input,
+    button_play,
+    button_stop,
+    music_name,
+    source,
+    music,
+    vol,
+    vol_slider,
+    img;
 let curr_status = { flag: false, message: "" };
 
 async function playBtnHandler() {
@@ -11,11 +19,18 @@ async function playBtnHandler() {
         music_name = input.value();
         input.value("");
 
+        // Play downloaded music
+        // music = createAudio('./sounds/embrace-12278.mp3');
+        // music.play();
+        // music.onended(stopBtnHandler);
+        // curr_status = { flag: true, message: "Playing" };
+
         // Fetch music data from API
         let audioUrl = await fetch(FETCH_URL, {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
+                "Access-Control-Allow-Origin": "*",
             },
             mode: "cors",
             body: JSON.stringify({ query: music_name + " music lyrics " }),
@@ -25,7 +40,6 @@ async function playBtnHandler() {
 
         if (audioUrl.data) {
             source = audioUrl.data;
-
             music = createAudio(source);
             music.play();
             music.onended(stopBtnHandler);
@@ -63,7 +77,7 @@ function preload() {
     sample[10] = loadSound("./sounds/se11.wav");
     sample[11] = loadSound("./sounds/se12.wav");
 
-    img = loadImage('./images/keyboard.png');
+    img = loadImage("./images/keyboard.png");
 }
 
 function setup() {
@@ -71,18 +85,18 @@ function setup() {
 
     // Create an input
     input = createInput().attribute("placeholder", "Type Music & Artist");
-    input.size(200,30);
+    input.size(200, 30);
     input.position(0, 0);
 
     // Create a play button
     button_play = createButton("Play");
-    button_play.size(60,input.height);
+    button_play.size(60, input.height);
     button_play.position(input.x + input.width, 0);
     button_play.mousePressed(playBtnHandler);
 
     // Create a stop button
     button_stop = createButton("Stop");
-    button_stop.size(60,input.height);
+    button_stop.size(60, input.height);
     button_stop.position(input.x + input.width, input.height);
     button_stop.mousePressed(stopBtnHandler);
 
@@ -109,11 +123,15 @@ function draw() {
     } else {
         textSize(70);
         textAlign(CENTER);
-        text("Play music to start!", windowWidth/2,windowHeight/2-100);
+        text("Play music to start!", windowWidth / 2, windowHeight / 2 - 100);
         imageMode(CENTER);
-        image(img,windowWidth/2,windowHeight/2+40,500,200);
+        image(img, windowWidth / 2, windowHeight / 2 + 40, 500, 200);
         textSize(20);
-        text("Use Q-R, A-F, Z-V on Qwerty keyboard",windowWidth/2,windowHeight/2+170);
+        text(
+            "Use Q-R, A-F, Z-V on Qwerty keyboard",
+            windowWidth / 2,
+            windowHeight / 2 + 170
+        );
     }
 
     if (animation.length > 0) {
