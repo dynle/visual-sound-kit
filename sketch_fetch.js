@@ -19,37 +19,31 @@ async function playBtnHandler() {
         music_name = input.value();
         input.value("");
 
-        // ----- Play downloaded music -----
-        music = createAudio('./sounds/embrace-12278.mp3');
-        music.play();
-        music.onended(stopBtnHandler);
-        curr_status = { flag: true, message: "Playing" };
-
         // ----- Fetch music data from API -----
-    //     let audioUrl = await fetch(FETCH_URL, {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-type": "application/json",
-    //             "Access-Control-Allow-Origin": "*",
-    //         },
-    //         mode: "cors",
-    //         body: JSON.stringify({ query: music_name + " music lyrics " }),
-    //     });
+        let audioUrl = await fetch(FETCH_URL, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+            },
+            mode: "cors",
+            body: JSON.stringify({ query: music_name + " music lyrics " }),
+        });
 
-    //     audioUrl = await audioUrl.json();
+        audioUrl = await audioUrl.json();
 
-    //     if (audioUrl.data) {
-    //         source = audioUrl.data;
-    //         music = createAudio(source);
-    //         music.play();
-    //         music.onended(stopBtnHandler);
+        if (audioUrl.data) {
+            source = audioUrl.data;
+            music = createAudio(source);
+            music.play();
+            music.onended(stopBtnHandler);
 
-    //         curr_status = { flag: true, message: "Playing" };
-    //     } else {
-    //         curr_status = { flag: false, message: "music not found" };
-    //     }
-    // } else {
-    //     window.alert("Stop the music first!");
+            curr_status = { flag: true, message: "Playing" };
+        } else {
+            curr_status = { flag: false, message: "music not found" };
+        }
+    } else {
+        window.alert("Stop the music first!");
     }
 }
 
