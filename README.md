@@ -1,7 +1,7 @@
 # Visual Sound Kit
 
-<img width="1552" alt="Screen Shot 2022-06-04 at 1 08 26 PM" src="https://user-images.githubusercontent.com/36508771/171981971-71ec47fb-b234-458d-b691-91520064afd9.png">
-<img width="1440" alt="Screen Shot 2022-06-04 at 1 09 01 PM" src="https://user-images.githubusercontent.com/36508771/171981978-e0f04446-e8f1-44c6-9131-7ca045922cc5.png">
+<img width="1433" alt="Screen Shot 2022-06-04 at 1 08 26 PM" src="https://user-images.githubusercontent.com/36508771/171982095-77eef9fa-7204-4c10-83df-bd7b4419a45e.png">
+<img width="1438" alt="Screen Shot 2022-06-04 at 1 09 01 PM" src="https://user-images.githubusercontent.com/36508771/171982097-1a2dd514-ca9c-46a2-b740-10dd9244b6dd.png">
 
 ## Technologies
 * HTML
